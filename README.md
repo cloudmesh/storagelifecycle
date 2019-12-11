@@ -114,8 +114,8 @@ Example:
 
 ```
 Supporting Documentation:
-https://docs.aws.amazon.com/AmazonS3/latest/dev/intro-lifecycle-rules.html
-https://cloud.google.com/storage/docs/managing-lifecycles
-https://www.visualcapitalist.com/how-much-data-is-generated-each-day/
+- https://docs.aws.amazon.com/AmazonS3/latest/dev/intro-lifecycle-rules.html
+- https://cloud.google.com/storage/docs/managing-lifecycles
+- https://www.visualcapitalist.com/how-much-data-is-generated-each-day/
 
 
