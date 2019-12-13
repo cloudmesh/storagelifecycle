@@ -28,9 +28,6 @@ def readfile(filename):
 # add minimum requirements here
 #
 requiers = """
-cloudmesh-cmd5
-cloudmesh-sys
-cloudmesh-configuration
 boto3
 gsutil
 pytest
