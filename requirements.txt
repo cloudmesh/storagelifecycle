@@ -1,1 +1,4 @@
-# not yet
+boto3
+gsutil
+pytest
+cloudmesh-installer
