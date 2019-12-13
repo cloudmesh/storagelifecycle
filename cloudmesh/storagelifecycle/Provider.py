@@ -1,5 +1,5 @@
 
-from cloudmesh.storage.StorageNewABC import StorageABC
+from cloudmesh.storagelifecycle.StorageABC import StorageABC
 from cloudmesh.storagelifecycle.providers.aws.Provider import Provider as AwsProvider
 from cloudmesh.storagelifecycle.providers.gcp.Provider import Provider as GCPProvider
 

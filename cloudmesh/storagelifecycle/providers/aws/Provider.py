@@ -13,7 +13,7 @@ import os
 # Owned
 from cloudmesh.common.console import Console
 from cloudmesh.configuration.Config import Config
-from cloudmesh.storage.StorageABC import StorageABC
+from cloudmesh.storagelifecycle.StorageABC import StorageABC
 
 # Other
 import boto3
