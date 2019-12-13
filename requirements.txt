@@ -1,4 +1,3 @@
 boto3
 gsutil
 pytest
-cloudmesh-cloud
