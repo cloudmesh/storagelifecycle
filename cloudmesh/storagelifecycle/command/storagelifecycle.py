@@ -25,13 +25,13 @@ class StoragelifecycleCommand(PluginCommand):
             --lifecycle_config FILE     File containing storage lifecycle rules for bucket or objects in bucket
 
         Arguments:
-            SERVICE                 Name of the cloud service provider (i.e. aws, gcp, azure)
+            SERVICE                 Name of the cloud service provider (i.e. aws, google, azure)
             STORAGE_BUCKET_NAME     Id of the cloud service provider bucket
             NUM_DAYS                NUMBER OF DAYS
 
         Description:
             Manage cloud service provider objects so that they are stored cost-effectively throughout their lifecycle.
-            AWS and GCP are currently supported.
+            AWS and google are currently supported.
     
             storagelifecycle put SERVICE STORAGE_BUCKET_NAME (--expiry_in_days=NUM_DAYS | --lifecycle_config FILE)
                 Creates a new lifecycle configuration for the bucket or replaces an existing lifecycle configuration.
@@ -43,10 +43,10 @@ class StoragelifecycleCommand(PluginCommand):
                 Returns the lifecycle configuration information set on the bucket.
 
         Example:
-            storagelifecycle put "gcp" "cloudmesh-bucket-001" --expiry_in_days=90
-            storagelifecycle put "gcp" "cloudmesh-bucket-001" --lifecycle_config="C:\\mydir\\gcp_lifecycle_config.json"                        
-            storagelifecycle get "gcp" "cloudmesh-bucket-001"
-            storagelifecycle delete "gcp" "cloudmesh-bucket-001"
+            storagelifecycle put "google" "cloudmesh-bucket-001" --expiry_in_days=90
+            storagelifecycle put "google" "cloudmesh-bucket-001" --lifecycle_config="C:\\mydir\\google_lifecycle_config.json"                        
+            storagelifecycle get "google" "cloudmesh-bucket-001"
+            storagelifecycle delete "google" "cloudmesh-bucket-001"
         """
 
         # Map parameters with -- to regular argument dicts for easier processing.
