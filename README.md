@@ -63,7 +63,6 @@ cd cloudmesh-storagelifecycle
 pip install -e .
 
 echo 'Installation Complete' 
-
 ```
 
 Note:
