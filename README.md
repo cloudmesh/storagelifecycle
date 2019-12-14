@@ -28,8 +28,33 @@ Implementation of lifecycle policies will be provided for AWS and GCP in the ini
 This service provides a standard command-line interface that allows you to set the storage lifecycle policy rules for storage buckets in multiple CSPs.
 
 
-## Technologies
-* cloudmesh storage
+## Installation (on Windows)
+```
+python -m venv env3
+env3\Scripts\activate
+mkdir cm
+cd cm
+pip install cloudmesh-installer -U
+cloudmesh-installer git clone cloud
+cloudmesh-installer install cloud
+git clone https://github.com/cloudmesh/storagelifecycle cloudmesh-storagelifecycle
+cd cloudmesh-storagelifecycle
+pip install -e .
+
+echo "Installation Complete"
+```
+
+Note:
+
+For GCP, must run: 'gsutil config' to set access credentials
+For AWS, in cloudmesh.yaml be sure to set the following values:
+
+- <b>cloudmesh.storage.aws.credentials.access_key_id:</b> "AKIAxxxxxxxxxxxxxxx"
+- <b>cloudmesh.storage.aws.credentials.secret_access_key:</b>"Hxkhxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+- <b>cloudmesh.storage.aws.credentials.region:</b> us-east-1
+
+
+## Usage
  
 ```
 Usage:
@@ -60,10 +85,10 @@ Description:
         Returns the lifecycle configuration information set on the bucket.
 
 Example:
-    storagelifecycle put "gcp" "cloudmesh-bucket-001" --expiry_in_days=90
-    storagelifecycle put "gcp" "cloudmesh-bucket-001" --lifecycle_config="C:\\mydir\\gcp_lifecycle_config.json"                        
-    storagelifecycle get "gcp" "cloudmesh-bucket-001"
-    storagelifecycle delete "gcp" "cloudmesh-bucket-001"
+    storagelifecycle put "aws" "cloudmesh-bucket-001" --expiry_in_days=90
+    storagelifecycle put "aws" "cloudmesh-bucket-001" --lifecycle_config="C:\\mydir\\aws_lifecycle_config.json"                        
+    storagelifecycle get "aws" "cloudmesh-bucket-001"
+    storagelifecycle delete "aws" "cloudmesh-bucket-001"
 
     For advanced storage lifecycle configurations, use the  --lifecycle_config FILE option:
     
@@ -110,10 +135,19 @@ Example:
         }
     ]
     }
-
-
 ```
-Supporting Documentation:
+
+## Testing with Pytest
+```
+pytest cloudmesh/storagelifecycle/tests/ -v -s -W ignore::DeprecationWarning --durations=10
+
+or 
+
+pytest cloudmesh/storagelifecycle/tests/test_aws.py -v -s -W ignore::DeprecationWarning --durations=10
+pytest cloudmesh/storagelifecycle/tests/test_gcp.py -v -s -W ignore::DeprecationWarning --durations=10
+```
+
+## Supporting Documentation:
 - https://docs.aws.amazon.com/AmazonS3/latest/dev/intro-lifecycle-rules.html
 - https://cloud.google.com/storage/docs/managing-lifecycles
 - https://www.visualcapitalist.com/how-much-data-is-generated-each-day/
