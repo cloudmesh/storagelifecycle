@@ -13,6 +13,8 @@ import boto3
 from cloudmesh.common.Shell import Shell
 from cloudmesh.configuration.Config import Config
 from cloudmesh.compute.vm.Provider import Provider
+from cloudmesh.common.util import HEADING
+from cloudmesh.common.Benchmark import Benchmark
 
 class TestStorageLifecycleAWS(object):
 
@@ -27,6 +29,7 @@ class TestStorageLifecycleAWS(object):
         # Load config values from cloudmesh.yaml
         self.config = Config()        
         self.credentails = self.config["cloudmesh"]["storage"]["aws"]["credentials"]
+        self.storage = "aws"
 
         # Create client connection
         self.s3_client = boto3.client(
@@ -40,6 +43,9 @@ class TestStorageLifecycleAWS(object):
     def test_create_storage_bucket(self):
         ''' Create Storage Bucket '''
 
+        HEADING()
+        Benchmark.Start()
+
         # Create the bucket (must be globally unique name)
         result = self.s3_client.create_bucket(Bucket=self.storage_bucket)
 
@@ -47,9 +53,13 @@ class TestStorageLifecycleAWS(object):
         json.dumps(result)
         assert result["ResponseMetadata"]["HTTPStatusCode"] == 200
 
+        Benchmark.Stop()        
 
     def test_create_storage_lifecycle_policy(self):
         ''' Create Storage Lifecycle Policy '''
+        
+        HEADING()
+        Benchmark.Start()
 
         # Execute CMS command 
         result=Shell.execute("cms",["storagelifecycle","put","aws",self.storage_bucket,
@@ -59,9 +69,13 @@ class TestStorageLifecycleAWS(object):
         data = json.loads(result)
         assert data["ResponseMetadata"]["HTTPStatusCode"] == 200
 
+        Benchmark.Stop()        
      
     def test_get_storage_lifecycle_policy(self):
         ''' Return Storage Lifecycle Policy details '''
+
+        HEADING()
+        Benchmark.Start()
 
         # Execute CMS command 
         result=Shell.execute("cms",["storagelifecycle","get","aws",self.storage_bucket])
@@ -70,9 +84,13 @@ class TestStorageLifecycleAWS(object):
         data = json.loads(result)
         assert data["ResponseMetadata"]["HTTPStatusCode"] == 200
 
+        Benchmark.Stop()        
     
     def test_delete_storage_lifecycle_policy(self):
         ''' Delete Storage Lifecycle Policy '''
+        
+        HEADING()
+        Benchmark.Start()
 
         # Execute CMS command 
         result=Shell.execute("cms",["storagelifecycle","delete","aws",self.storage_bucket])
@@ -81,9 +99,13 @@ class TestStorageLifecycleAWS(object):
         data = json.loads(result)
         assert data["ResponseMetadata"]["HTTPStatusCode"] == 204        
 
+        Benchmark.Stop()        
 
     def test_delete_storage_bucket(self):
         ''' Delete Storage Bucket '''
+
+        HEADING()
+        Benchmark.Start()
 
         # Delete the bucket 
         result = self.s3_client.delete_bucket(Bucket=self.storage_bucket)
@@ -91,7 +113,12 @@ class TestStorageLifecycleAWS(object):
         # Evaluate result
         json.dumps(result)
         assert result["ResponseMetadata"]["HTTPStatusCode"] == 204
-    
+
+        Benchmark.Stop()        
+
+    def test_benchmark(self):
+        Benchmark.print(sysinfo=True, csv=True, tag=self.storage)    
+
     @classmethod
     def teardown_class(self):
         "Runs at end of class"        

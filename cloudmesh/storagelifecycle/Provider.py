@@ -15,9 +15,9 @@ class Provider(StorageABC):
         
         super(Provider, self).__init__(service=service, config=config)
 
-        if self.kind == "aws":
+        if self.service == "aws":
             self.provider = AwsProvider(service=service, config=config)
-        elif self.kind == "gcp":
+        elif self.service == "google":
             self.provider = GCPProvider(service=service, config=config)
         #Not Implemented
         #elif self.kind == "azure":

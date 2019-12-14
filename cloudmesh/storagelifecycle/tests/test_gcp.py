@@ -37,7 +37,7 @@ class TestStorageLifecycleGCP(object):
         self.SERVICE_SUBCOMMAND_GET = 'get'
         self.SERVICE_SUBCOMMAND_SET = 'set'
         self.GCP_PROJECT_ID_SWITCH = '-p'
-        self.cloud = "GCP"
+        self.storage = "google"
 
 
     def test_create_storage_bucket(self):
@@ -65,7 +65,7 @@ class TestStorageLifecycleGCP(object):
         Benchmark.Start()
 
         # Execute CMS command 
-        result=Shell.execute("cms",["storagelifecycle","put","gcp",self.storage_bucket,
+        result=Shell.execute("cms",["storagelifecycle","put",self.storage,self.storage_bucket,
         "--expiry_in_days={0}".format(self.storage_lifespan)])
         
         Benchmark.Stop()         
@@ -78,7 +78,7 @@ class TestStorageLifecycleGCP(object):
 
         # Execute CMS command 
         result = {}        
-        result = json.loads(Shell.execute("cms",["storagelifecycle","get","gcp",self.storage_bucket]))
+        result = json.loads(Shell.execute("cms",["storagelifecycle","get",self.storage,self.storage_bucket]))
 
         # Evaluate result
         assert result["rule"][0]["condition"]["age"] == self.storage_lifespan
@@ -88,7 +88,7 @@ class TestStorageLifecycleGCP(object):
         ''' Delete Storage Lifecycle Policy '''
 
         # Execute CMS command 
-        result=Shell.execute("cms",["storagelifecycle","delete","gcp",self.storage_bucket])
+        result=Shell.execute("cms",["storagelifecycle","delete",self.storage,self.storage_bucket])
 
         # Evaluate result
         assert "Setting lifecycle configuration on {0}".format(self.STORAGE_BUCKET_PROTOCOL + self.storage_bucket) in result
@@ -108,7 +108,7 @@ class TestStorageLifecycleGCP(object):
         assert "Removing {0}".format(self.STORAGE_BUCKET_PROTOCOL + self.storage_bucket) in result
 
     def test_benchmark(self):
-        Benchmark.print(sysinfo=True, csv=True, tag=self.cloud)        
+        Benchmark.print(sysinfo=True, csv=True, tag=self.storage)        
 
     @classmethod
     def teardown_class(self):
