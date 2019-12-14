@@ -28,13 +28,13 @@ Implementation of lifecycle policies will be provided for AWS and GCP in the ini
 This service provides a standard command-line interface that allows you to set the storage lifecycle policy rules for storage buckets in multiple CSPs.
 
 
-## Installation (on Windows)
+## Installation on Windows
 ```
 python -m venv env3
 env3\Scripts\activate
 mkdir cm
 cd cm
-pip install cloudmesh-installer -U
+pip install cloudmesh-installer
 cloudmesh-installer git clone cloud
 cloudmesh-installer install cloud
 git clone https://github.com/cloudmesh/storagelifecycle cloudmesh-storagelifecycle
@@ -44,9 +44,32 @@ pip install -e .
 echo "Installation Complete"
 ```
 
+## Installation on Linux
+```
+alias python=python3
+sudo apt-get install python3.6-dev
+sudo apt-get install python3-venv 
+
+python -m venv env3
+source env3/bin/activate
+mkdir cm
+cd cm
+pip install pip
+pip install cloudmesh-installer
+cloudmesh-installer git clone cloud
+cloudmesh-installer install cloud
+git clone https://github.com/cloudmesh/storagelifecycle cloudmesh-storagelifecycle
+cd cloudmesh-storagelifecycle
+pip install -e .
+
+echo 'Installation Complete' 
+
+```
+
 Note:
 
-For GCP, must run: 'gsutil config' to set access credentials
+For Google, run: 'gsutil config' to set access credentials
+
 For AWS, in cloudmesh.yaml be sure to set the following values:
 
 - <b>cloudmesh.storage.aws.credentials.access_key_id:</b> "AKIAxxxxxxxxxxxxxxx"
