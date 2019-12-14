@@ -42,8 +42,8 @@ class Provider(StorageABC):
         # Create client connection
         self.s3_client = boto3.client(
             's3',
-            aws_access_key_id = self.credentails["API_ACCESS_ID"],
-            aws_secret_access_key = self.credentails["API_SECRET_KEY"],
+            aws_access_key_id = self.credentails["access_key_id"],
+            aws_secret_access_key = self.credentails["secret_access_key"],
             region_name = self.credentails["region"]
         )        
 
