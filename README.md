@@ -9,15 +9,19 @@ providers (CSP) continues to grow at a rapid pace, managing the
 lifecycle of stored data in a thoughtful manner becomes necessary to
 control costs and accurately forecast spending.
 
-According to the VisualCapitalist.com, "By 2025, it’s estimated that 463
-exabytes of data will be created each day globally – that’s the
-equivalent of 212,765,957 DVDs per day!" As of 11/2019, it currently
-costs ~$20,000 USD to store 1 PB of data in the cloud.
+According to the VisualCapitalist.com, 
+
+    "By 2025, it is estimated that 463 exabytes of data will be created
+    each day globally – that is the equivalent of 212,765,957 DVDs per
+    day!"
+
+As of 11/2019, it currently costs ~$20,000 USD to store 1 PB of data in
+the cloud.
 
 Without a data lifecycle management strategy, objects sent to a CSP
 could be stored indefinitely. Even if the objects (data) are
 infrequently or never accessed, the customer will likely be charged for
-storage (beyond a certain 'free storage limit'). This will ultimately
+storage (beyond a certain *free storage limit*). This will ultimately
 lead to 'sloppy storage' and the 'deletion dilemma'.
 
 By strategically applying a lifecycle storage policy to control costs
@@ -89,7 +93,11 @@ echo 'Installation Complete'
 
 Note:
 
-For Google, run: 'gsutil config' to set access credentials
+For Google, run: 
+
+    gsutil config
+
+to set access credentials
 
 For AWS, in cloudmesh.yaml be sure to set the following values:
 
