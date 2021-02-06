@@ -7,6 +7,7 @@ from cloudmesh.common.util import path_expand
 from pprint import pprint
 from cloudmesh.common.debug import VERBOSE
 
+
 class StoragelifecycleCommand(PluginCommand):
 
     # noinspection PyUnusedLocal
@@ -60,10 +61,10 @@ class StoragelifecycleCommand(PluginCommand):
         if arguments["put"]:
             provider.put(arguments.SERVICE, arguments.STORAGE_BUCKET_NAME, arguments)
         elif arguments["get"]:
-            provider.get(arguments.SERVICE, arguments.STORAGE_BUCKET_NAME)            
+            provider.get(arguments.SERVICE, arguments.STORAGE_BUCKET_NAME)
         elif arguments["delete"]:
             provider.delete(arguments.SERVICE, arguments.STORAGE_BUCKET_NAME)
         else:
             return NotImplementedError
-        
+
         pass
